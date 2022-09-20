@@ -27,27 +27,28 @@ namespace Comet.Controllers
 
         // GET api/<MakesController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<MakeDto> Get(int id)
         {
-            return "value";
+            var make = await makeRepository.GetMakeWithModels(id);
+            return mapper.Map<MakeDto>(make);
         }
 
-        // POST api/<MakesController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+        //// POST api/<MakesController>
+        //[HttpPost]
+        //public void Post([FromBody] string value)
+        //{
+        //}
 
-        // PUT api/<MakesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //// PUT api/<MakesController>/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE api/<MakesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/<MakesController>/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

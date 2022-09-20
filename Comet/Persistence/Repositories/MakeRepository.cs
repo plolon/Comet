@@ -18,5 +18,10 @@ namespace Comet.Persistence.Repositories
         {
             return await dbContext.Makes.Include(x => x.Models).ToListAsync();
         }
+
+        public async Task<Make> GetMakeWithModels(int id)
+        {
+            return await dbContext.Makes.Include(x => x.Models).FirstOrDefaultAsync(x => x.Id.Equals(id));
+        }
     }
 }

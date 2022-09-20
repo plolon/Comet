@@ -8,8 +8,10 @@ namespace Comet.Profiles
     {
         public MappingProfile()
         {
-            CreateMap<Make, MakeDto>().ReverseMap();
-            CreateMap<Model, ModelDto>().ReverseMap();
+            CreateMap<Make, MakeDto>()
+                .ReverseMap();
+            CreateMap<Model, ModelDto>()
+                .ReverseMap();
         }
     }
 }
