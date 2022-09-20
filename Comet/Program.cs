@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.ConfigurePersistence(builder.Configuration);
+builder.Services.ConfigureProfiles(builder.Configuration);
 
 var app = builder.Build();
 

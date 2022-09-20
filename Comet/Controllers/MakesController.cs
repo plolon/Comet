@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Comet.Persistence.IRepositories;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Comet.Controllers
 {
@@ -6,11 +7,18 @@ namespace Comet.Controllers
     [ApiController]
     public class MakesController : ControllerBase
     {
+        private readonly IMakeRepository makeRepository;
+
+        public MakesController(IMakeRepository makeRepository)
+        {
+            this.makeRepository = makeRepository;
+        }
         // GET: api/<MakesController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var makes = await makeRepository.GetAllMakesWithModels();
+            return null; 
         }
 
         // GET api/<MakesController>/5
