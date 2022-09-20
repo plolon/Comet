@@ -14,7 +14,7 @@ namespace Comet.Persistence.Repositories
             this.dbContext = dbContext;
         }
 
-        public async Task<ICollection> GetAllMakesWithModels()
+        public async Task<IEnumerable> GetAllMakesWithModels()
         {
             return await dbContext.Makes.Include(x => x.Models).ToListAsync();
         }

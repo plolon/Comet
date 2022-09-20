@@ -1,4 +1,6 @@
-﻿using Comet.Persistence.IRepositories;
+﻿using AutoMapper;
+using Comet.DTOs;
+using Comet.Persistence.IRepositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Comet.Controllers
@@ -8,17 +10,19 @@ namespace Comet.Controllers
     public class MakesController : ControllerBase
     {
         private readonly IMakeRepository makeRepository;
+        private readonly IMapper mapper;
 
-        public MakesController(IMakeRepository makeRepository)
+        public MakesController(IMakeRepository makeRepository, IMapper mapper)
         {
             this.makeRepository = makeRepository;
+            this.mapper = mapper;
         }
         // GET: api/<MakesController>
         [HttpGet]
-        public async Task<IEnumerable<string>> Get()
+        public async Task<IEnumerable<MakeDto>> Get()
         {
             var makes = await makeRepository.GetAllMakesWithModels();
-            return null; 
+            return mapper.Map<IEnumerable<MakeDto>>(makes);
         }
 
         // GET api/<MakesController>/5

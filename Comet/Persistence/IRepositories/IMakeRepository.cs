@@ -5,6 +5,6 @@ namespace Comet.Persistence.IRepositories
 {
     public interface IMakeRepository : IGenericRepository<Make>
     {
-        Task<ICollection> GetAllMakesWithModels();
+        Task<IEnumerable> GetAllMakesWithModels();
     }
 }

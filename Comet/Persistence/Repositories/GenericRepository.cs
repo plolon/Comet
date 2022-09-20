@@ -16,7 +16,7 @@ namespace Comet.Persistence.Repositories
             return await dbContext.Set<T>().FindAsync(id);
         }
 
-        public async Task<ICollection<T>> GetAll()
+        public async Task<IEnumerable<T>> GetAll()
         {
             return await dbContext.Set<T>().ToListAsync();
         }
