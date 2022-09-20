@@ -1,4 +1,6 @@
 ﻿using Comet.Persistence;
+using Comet.Persistence.IRepositories;
+using Comet.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Comet.Extensions
@@ -11,6 +13,11 @@ namespace Comet.Extensions
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IMakeRepository, MakeRepository>();
+            services.AddScoped<IModelRepository, ModelRepository>();
+
             return services;
         }
     }
