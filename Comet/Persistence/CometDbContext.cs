@@ -9,5 +9,10 @@ namespace Comet.Persistence
 
         public DbSet<Make> Makes { get; set; }
         public DbSet<Model> Models { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(CometDbContext).Assembly);
+        }
     }
 }
