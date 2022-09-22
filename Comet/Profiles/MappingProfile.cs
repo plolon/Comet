@@ -14,6 +14,8 @@ namespace Comet.Profiles
                 .ReverseMap();
             CreateMap<Feature, FeatureDto>()
                 .ReverseMap();
+            CreateMap<Vehicle, VehicleDto>()
+                .ReverseMap();
         }
     }
 }

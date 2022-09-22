@@ -37,7 +37,7 @@ namespace Comet.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Features");
+                    b.ToTable("Features", (string)null);
 
                     b.HasData(
                         new
@@ -72,7 +72,7 @@ namespace Comet.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Makes");
+                    b.ToTable("Makes", (string)null);
 
                     b.HasData(
                         new
@@ -112,7 +112,7 @@ namespace Comet.Migrations
 
                     b.HasIndex("MakeId");
 
-                    b.ToTable("Models");
+                    b.ToTable("Models", (string)null);
 
                     b.HasData(
                         new
@@ -206,7 +206,7 @@ namespace Comet.Migrations
 
                     b.HasIndex("ModelId");
 
-                    b.ToTable("Vehicles");
+                    b.ToTable("Vehicles", (string)null);
                 });
 
             modelBuilder.Entity("Comet.Models.VehicleFeature", b =>
@@ -221,7 +221,7 @@ namespace Comet.Migrations
 
                     b.HasIndex("FeatureId");
 
-                    b.ToTable("VehicleFeatures");
+                    b.ToTable("VehicleFeatures", (string)null);
                 });
 
             modelBuilder.Entity("Comet.Models.Model", b =>

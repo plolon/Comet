@@ -11,6 +11,10 @@ namespace Comet.Models
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
-        public ICollection<Model> Models { get; set; } = new Collection<Model>();
+        public ICollection<Model> Models { get; set; }
+        public Make()
+        {
+            Models = new Collection<Model>();
+        }
     }
 }

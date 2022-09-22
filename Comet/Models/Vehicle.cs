@@ -20,6 +20,10 @@ namespace Comet.Models
         [StringLength(255)]
         public string ContactPhone { get; set; }
         public DateTime LastUpdate { get; set; }
-        ICollection<VehicleFeature> Features { get; set; } = new Collection<VehicleFeature>();
+        public ICollection<VehicleFeature> Features { get; set; }
+        public Vehicle()
+        {
+            Features = new Collection<VehicleFeature>();
+        }
     }
 }
