@@ -17,6 +17,7 @@ namespace Comet.Extensions
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IMakeRepository, MakeRepository>();
             services.AddScoped<IModelRepository, ModelRepository>();
+            services.AddScoped<IFeatureRepository, FeatureRepository>();
 
             return services;
         }

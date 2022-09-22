@@ -12,6 +12,8 @@ namespace Comet.Profiles
                 .ReverseMap();
             CreateMap<Model, ModelDto>()
                 .ReverseMap();
+            CreateMap<Feature, FeatureDto>()
+                .ReverseMap();
         }
     }
 }
