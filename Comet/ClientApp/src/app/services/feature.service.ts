@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class MakeService {
+export class FeatureService {
+
   constructor(private http: HttpClient) {}
 
-  getMakes() {
-    return this.http.get('https://localhost:7151/api/makes');
+  getFeatures() {
+    return this.http.get('https://localhost:7151/api/features');
   }
 }
