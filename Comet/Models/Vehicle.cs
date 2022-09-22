@@ -1,7 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Comet.Models
 {
+    [Table("Vehicles")]
     public class Vehicle
     {
         public int Id { get; set; }
@@ -17,5 +20,6 @@ namespace Comet.Models
         [StringLength(255)]
         public string ContactPhone { get; set; }
         public DateTime LastUpdate { get; set; }
+        ICollection<VehicleFeature> Features { get; set; } = new Collection<VehicleFeature>();
     }
 }
