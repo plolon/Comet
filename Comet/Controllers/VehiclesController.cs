@@ -1,4 +1,6 @@
-﻿using Comet.DTOs;
+﻿using AutoMapper;
+using Comet.DTOs;
+using Comet.Models;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -9,6 +11,12 @@ namespace Comet.Controllers
     [ApiController]
     public class VehiclesController : ControllerBase
     {
+        private readonly IMapper mapper;
+
+        public VehiclesController(IMapper mapper)
+        {
+            this.mapper = mapper;
+        }
         //// GET: api/<VehiclesController>
         //[HttpGet]
         //public IEnumerable<string> Get()
@@ -25,8 +33,9 @@ namespace Comet.Controllers
 
         // POST api/<VehiclesController>
         [HttpPost]
-        public async Task<IActionResult> CreateVehicle([FromBody] VehicleDto vehicle)
+        public async Task<IActionResult> CreateVehicle([FromBody] VehicleDto vehicleDto)
         {
+            var vehicle = mapper.Map<VehicleDto, Vehicle>(vehicleDto);
             return Ok(vehicle);
         }
 
