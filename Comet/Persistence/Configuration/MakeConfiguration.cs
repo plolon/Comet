@@ -17,7 +17,8 @@ namespace Comet.Persistence.Configuration
             {
                 Id = 2,
                 Name = "Make2",
-            });            builder.HasData(new Make
+            });
+            builder.HasData(new Make
             {
                 Id = 3,
                 Name = "Make3",
