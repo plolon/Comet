@@ -10,12 +10,12 @@ namespace Comet.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FeatureController : ControllerBase
+    public class FeaturesController : ControllerBase
     {
         private readonly IFeatureRepository featureRepository;
         private readonly IMapper mapper;
 
-        public FeatureController(IFeatureRepository featureRepository, IMapper mapper)
+        public FeaturesController(IFeatureRepository featureRepository, IMapper mapper)
         {
             this.featureRepository = featureRepository;
             this.mapper = mapper;
