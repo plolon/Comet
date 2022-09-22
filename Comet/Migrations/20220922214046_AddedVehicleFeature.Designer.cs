@@ -4,6 +4,7 @@ using Comet.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Comet.Migrations
 {
     [DbContext(typeof(CometDbContext))]
-    partial class CometDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220922214046_AddedVehicleFeature")]
+    partial class AddedVehicleFeature
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +39,7 @@ namespace Comet.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Features", (string)null);
+                    b.ToTable("Features");
 
                     b.HasData(
                         new
@@ -72,7 +74,7 @@ namespace Comet.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Makes", (string)null);
+                    b.ToTable("Makes");
 
                     b.HasData(
                         new
@@ -112,7 +114,7 @@ namespace Comet.Migrations
 
                     b.HasIndex("MakeId");
 
-                    b.ToTable("Models", (string)null);
+                    b.ToTable("Models");
 
                     b.HasData(
                         new
@@ -206,7 +208,7 @@ namespace Comet.Migrations
 
                     b.HasIndex("ModelId");
 
-                    b.ToTable("Vehicles", (string)null);
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("Comet.Models.VehicleFeature", b =>
@@ -221,7 +223,7 @@ namespace Comet.Migrations
 
                     b.HasIndex("FeatureId");
 
-                    b.ToTable("VehicleFeatures", (string)null);
+                    b.ToTable("VehicleFeatures");
                 });
 
             modelBuilder.Entity("Comet.Models.Model", b =>
