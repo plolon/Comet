@@ -38,6 +38,9 @@ namespace Comet.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateVehicle([FromBody] VehicleDto vehicleDto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var vehicle = mapper.Map<Vehicle>(vehicleDto);
             await vehicleRepository.Add(vehicle);
             var response = mapper.Map<VehicleDto>(vehicle);

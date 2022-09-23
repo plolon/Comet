@@ -1,5 +1,4 @@
-﻿using Comet.Models;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Comet.DTOs
@@ -9,6 +8,7 @@ namespace Comet.DTOs
         public int Id { get; set; }
         public int ModelId { get; set; }
         public bool IsRegistered { get; set; }
+        [Required]
         public VehicleContactDto Contact { get; set; }
         public virtual ICollection<int> Features { get; set; }
         public VehicleDto()
