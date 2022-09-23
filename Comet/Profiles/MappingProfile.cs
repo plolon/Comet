@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿ using AutoMapper;
 using Comet.DTOs;
 using Comet.Models;
 
@@ -17,6 +17,10 @@ namespace Comet.Profiles
                 .ForMember(v => v.ContactEmail, opt => opt.MapFrom(vdto => vdto.Contact.Email))
                 .ForMember(v => v.ContactPhone, opt => opt.MapFrom(vdto => vdto.Contact.Phone))
                 .ForMember(v => v.Features, opt => opt.MapFrom(vdto => vdto.Features.Select(id => new VehicleFeature { FeatureId = id })));
+
+            CreateMap<Vehicle, VehicleDto>()
+                .ForMember(vdto => vdto.Contact, opt => opt.MapFrom(v => new VehicleContactDto { Name = v.ContactName, Email = v.ContactEmail, Phone = v.ContactPhone }))
+                .ForMember(vdto => vdto.Features, opt => opt.MapFrom(v => v.Features.Select(vf => vf.FeatureId)));
         }
     }
 }
