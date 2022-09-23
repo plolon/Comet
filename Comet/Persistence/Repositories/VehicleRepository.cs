@@ -19,5 +19,12 @@ namespace Comet.Persistence.Repositories
             await dbContext.SaveChangesAsync();
             return entity;
         }
+        public override async Task<Vehicle> Update(Vehicle entity)
+        {
+            dbContext.Vehicles.Update(entity);
+            entity.LastUpdate = DateTime.Now;
+            await dbContext.SaveChangesAsync();
+            return entity;
+        }
     }
 }
