@@ -36,7 +36,7 @@ namespace Comet.Controllers
 
         // POST api/<VehiclesController>
         [HttpPost]
-        public async Task<IActionResult> CreateVehicle([FromBody] VehicleDto vehicleDto)
+        public async Task<IActionResult> Post([FromBody] VehicleDto vehicleDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -47,11 +47,20 @@ namespace Comet.Controllers
             return Ok(response);
         }
 
-        //// PUT api/<VehiclesController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
+        // PUT api/<VehiclesController>/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] VehicleDto vehicleDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var vehicle = await vehicleRepository.Get(id);
+            mapper.Map(vehicleDto, vehicle);
+            await vehicleRepository.Update(vehicle);
+
+            var response = mapper.Map<VehicleDto>(vehicle);
+            return Ok(response);
+        }
 
         //// DELETE api/<VehiclesController>/5
         //[HttpDelete("{id}")]
