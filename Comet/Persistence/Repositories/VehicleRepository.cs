@@ -1,5 +1,6 @@
 ﻿using Comet.Models;
 using Comet.Persistence.IRepositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Comet.Persistence.Repositories
 {
@@ -19,6 +20,17 @@ namespace Comet.Persistence.Repositories
             await dbContext.SaveChangesAsync();
             return entity;
         }
+
+        public async Task<IEnumerable<Vehicle>> GetAllVehiclesWithFeatures()
+        {
+            return await dbContext.Vehicles.Include(x => x.Features).ToListAsync();
+        }
+
+        public async Task<Vehicle> GetVehicleWithFeatures(int id)
+        {
+            return await dbContext.Vehicles.Include(v => v.Features).SingleOrDefaultAsync(v => v.Id.Equals(id));
+        }
+
         public override async Task<Vehicle> Update(Vehicle entity)
         {
             dbContext.Vehicles.Update(entity);

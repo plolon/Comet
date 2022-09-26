@@ -2,6 +2,7 @@
 using Comet.DTOs;
 using Comet.Models;
 using Comet.Persistence.IRepositories;
+using Comet.Persistence.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -20,19 +21,21 @@ namespace Comet.Controllers
             this.vehicleRepository = vehicleRepository;
             this.mapper = mapper;
         }
-        //// GET: api/<VehiclesController>
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
+        // GET: api/<VehiclesController>
+        [HttpGet]
+        public async Task<IEnumerable<VehicleDto>> Get()
+        {
+            var vehicles = await vehicleRepository.GetAllVehiclesWithFeatures();
+            return mapper.Map<IEnumerable<VehicleDto>>(vehicles);
+        }
 
-        //// GET api/<VehiclesController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        // GET api/<VehiclesController>/5
+        [HttpGet("{id}")]
+        public async Task<VehicleDto> Get(int id)
+        {
+            var vehicle = await vehicleRepository.GetVehicleWithFeatures(id);
+            return mapper.Map<VehicleDto>(vehicle);
+        }
 
         // POST api/<VehiclesController>
         [HttpPost]
@@ -62,10 +65,12 @@ namespace Comet.Controllers
             return Ok(response);
         }
 
-        //// DELETE api/<VehiclesController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        // DELETE api/<VehiclesController>/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await vehicleRepository.Delete(id);
+            return Ok(result);
+        }
     }
 }
