@@ -21,18 +21,18 @@ namespace Comet.Controllers
         }
         // GET: api/<FeatureController>
         [HttpGet]
-        public async Task<IEnumerable<FeatureDto>> Get()
+        public async Task<IEnumerable<KeyValuePairDto>> Get()
         {
             var features = await featureRepository.GetAll();
-            return mapper.Map<IEnumerable<FeatureDto>>(features);
+            return mapper.Map<IEnumerable<KeyValuePairDto>>(features);
         }
 
         // GET api/<FeatureController>/5
         [HttpGet("{id}")]
-        public async Task<FeatureDto> Get(int id)
+        public async Task<KeyValuePairDto> Get(int id)
         {
             var feature = await featureRepository.Get(id);
-            return mapper.Map<FeatureDto>(feature);
+            return mapper.Map<KeyValuePairDto>(feature);
         }
 
         // POST api/<FeatureController>

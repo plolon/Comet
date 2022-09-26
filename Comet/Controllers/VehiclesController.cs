@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Comet.DTOs;
+using Comet.DTOs.Vehicle;
 using Comet.Models;
 using Comet.Persistence.IRepositories;
 using Comet.Persistence.Repositories;
@@ -39,20 +39,20 @@ namespace Comet.Controllers
 
         // POST api/<VehiclesController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] VehicleDto vehicleDto)
+        public async Task<IActionResult> Post([FromBody] SaveVehicleDto vehicleDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var vehicle = mapper.Map<Vehicle>(vehicleDto);
             await vehicleRepository.Add(vehicle);
-            var response = mapper.Map<VehicleDto>(vehicle);
+            var response = mapper.Map<SaveVehicleDto>(vehicle);
             return Ok(response);
         }
 
         // PUT api/<VehiclesController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] VehicleDto vehicleDto)
+        public async Task<IActionResult> Put(int id, [FromBody] SaveVehicleDto vehicleDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -61,7 +61,7 @@ namespace Comet.Controllers
             mapper.Map(vehicleDto, vehicle);
             await vehicleRepository.Update(vehicle);
 
-            var response = mapper.Map<VehicleDto>(vehicle);
+            var response = mapper.Map<SaveVehicleDto>(vehicle);
             return Ok(response);
         }
 

@@ -1,4 +1,4 @@
-﻿namespace Comet.DTOs
+﻿namespace Comet.DTOs.Vehicle
 {
     public class VehicleContactDto
     {

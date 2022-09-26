@@ -23,12 +23,22 @@ namespace Comet.Persistence.Repositories
 
         public async Task<IEnumerable<Vehicle>> GetAllVehiclesWithFeatures()
         {
-            return await dbContext.Vehicles.Include(x => x.Features).ToListAsync();
+            return await dbContext.Vehicles
+                .Include(x => x.Features)
+                    .ThenInclude(vf => vf.Feature)
+                 .Include(x => x.Model)
+                    .ThenInclude(x => x.Make)
+                .ToListAsync();
         }
 
         public async Task<Vehicle> GetVehicleWithFeatures(int id)
         {
-            return await dbContext.Vehicles.Include(v => v.Features).SingleOrDefaultAsync(v => v.Id.Equals(id));
+            return await dbContext.Vehicles
+                .Include(x => x.Features)
+                    .ThenInclude(vf => vf.Feature)
+                 .Include(x => x.Model)
+                    .ThenInclude(x => x.Make)
+                .SingleOrDefaultAsync(v => v.Id.Equals(id));
         }
 
         public override async Task<Vehicle> Update(Vehicle entity)
