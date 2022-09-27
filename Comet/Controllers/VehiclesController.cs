@@ -50,6 +50,7 @@ namespace Comet.Controllers
             var vehicle = mapper.Map<Vehicle>(vehicleDto);
             var result = await vehicleRepository.Add(vehicle);
             await unitOfWork.Complete();
+            result = await vehicleRepository.GetVehicleWithFeatures(result.Id);
             var response = mapper.Map<VehicleDto>(result);
             return Ok(response);
         }
@@ -65,6 +66,7 @@ namespace Comet.Controllers
             mapper.Map(vehicleDto, vehicle);
             var result = await vehicleRepository.Update(vehicle);
             await unitOfWork.Complete();
+            result = await vehicleRepository.GetVehicleWithFeatures(result.Id);
             var response = mapper.Map<VehicleDto>(result);
             return Ok(response);
         }
