@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Comet.DTOs;
+using Comet.Persistence;
 using Comet.Persistence.IRepositories;
-using Comet.Persistence.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -22,18 +22,18 @@ namespace Comet.Controllers
         }
         // GET: api/<FeatureController>
         [HttpGet]
-        public async Task<IEnumerable<FeatureDto>> Get()
+        public async Task<IEnumerable<KeyValuePairDto>> Get()
         {
             var features = await featureRepository.GetAll();
-            return mapper.Map<IEnumerable<FeatureDto>>(features);
+            return mapper.Map<IEnumerable<KeyValuePairDto>>(features);
         }
 
         // GET api/<FeatureController>/5
         [HttpGet("{id}")]
-        public async Task<FeatureDto> Get(int id)
+        public async Task<KeyValuePairDto> Get(int id)
         {
             var feature = await featureRepository.Get(id);
-            return mapper.Map<FeatureDto>(feature);
+            return mapper.Map<KeyValuePairDto>(feature);
         }
 
         // POST api/<FeatureController>

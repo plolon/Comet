@@ -8,5 +8,6 @@ namespace Comet.Persistence.Repositories
         public FeatureRepository(CometDbContext dbContext) : base(dbContext)
         {
         }
+
     }
 }

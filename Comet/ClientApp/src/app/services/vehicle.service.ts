@@ -14,4 +14,8 @@ export class VehicleService {
   getMakes() {
     return this.http.get('https://localhost:7151/api/makes');
   }
+
+  create(vehicle: object) {
+    return this.http.post('https://localhost:7151/api/vehicles', vehicle);
+  }
 }

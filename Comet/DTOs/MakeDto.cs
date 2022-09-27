@@ -1,11 +1,13 @@
-﻿using System.Collections;
+﻿using System.Collections.ObjectModel;
 
 namespace Comet.DTOs
 {
-    public class MakeDto
+    public class MakeDto :KeyValuePairDto
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public ICollection<ModelDto> Models { get; set; }
+        public ICollection<KeyValuePairDto> Models { get; set; }
+        public MakeDto()
+        {
+            Models = new Collection<KeyValuePairDto>();
+        }
     }
 }
