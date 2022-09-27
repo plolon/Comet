@@ -17,7 +17,6 @@ namespace Comet.Persistence.Repositories
         {
             await dbContext.Vehicles.AddAsync(entity);
             entity.LastUpdate = DateTime.Now;
-            await dbContext.SaveChangesAsync();
 
             var vehicle = await GetVehicleWithFeatures(entity.Id);
             return vehicle;
@@ -47,7 +46,6 @@ namespace Comet.Persistence.Repositories
         {
             dbContext.Vehicles.Update(entity);
             entity.LastUpdate = DateTime.Now;
-            await dbContext.SaveChangesAsync();
 
             var vehicle = await GetVehicleWithFeatures(entity.Id);
             return vehicle;

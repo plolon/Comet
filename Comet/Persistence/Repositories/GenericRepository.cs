@@ -24,13 +24,11 @@ namespace Comet.Persistence.Repositories
         public virtual async Task<T> Add(T entity)
         {
             await dbContext.Set<T>().AddAsync(entity);
-            await dbContext.SaveChangesAsync();
             return entity;
         }
         public virtual async Task<T> Update(T entity)
         {
             dbContext.Set<T>().Update(entity);
-            await dbContext.SaveChangesAsync();
             return entity;
         }
 
@@ -42,7 +40,6 @@ namespace Comet.Persistence.Repositories
                 if (entity != null)
                 {
                     dbContext.Set<T>().Remove(entity);
-                    await dbContext.SaveChangesAsync();
                     return true;
                 }
                 return false;

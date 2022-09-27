@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Comet.DTOs.Vehicle;
 using Comet.Models;
+using Comet.Persistence;
 using Comet.Persistence.IRepositories;
 using Comet.Persistence.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -15,11 +16,13 @@ namespace Comet.Controllers
     {
         private readonly IVehicleRepository vehicleRepository;
         private readonly IMapper mapper;
+        private readonly IUnitOfWork unitOfWork;
 
-        public VehiclesController(IVehicleRepository vehicleRepository, IMapper mapper)
+        public VehiclesController(IVehicleRepository vehicleRepository, IMapper mapper, IUnitOfWork unitOfWork)
         {
             this.vehicleRepository = vehicleRepository;
             this.mapper = mapper;
+            this.unitOfWork = unitOfWork;
         }
         // GET: api/<VehiclesController>
         [HttpGet]
@@ -46,6 +49,7 @@ namespace Comet.Controllers
 
             var vehicle = mapper.Map<Vehicle>(vehicleDto);
             var result = await vehicleRepository.Add(vehicle);
+            await unitOfWork.Complete();
             var response = mapper.Map<VehicleDto>(result);
             return Ok(response);
         }
@@ -60,6 +64,7 @@ namespace Comet.Controllers
             var vehicle = await vehicleRepository.Get(id);
             mapper.Map(vehicleDto, vehicle);
             var result = await vehicleRepository.Update(vehicle);
+            await unitOfWork.Complete();
             var response = mapper.Map<VehicleDto>(result);
             return Ok(response);
         }
@@ -69,6 +74,7 @@ namespace Comet.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var result = await vehicleRepository.Delete(id);
+            await unitOfWork.Complete();
             return Ok(result);
         }
     }

@@ -20,6 +20,8 @@ namespace Comet.Extensions
             services.AddScoped<IFeatureRepository, FeatureRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             return services;
         }
     }
