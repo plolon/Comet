@@ -10,7 +10,7 @@ namespace Comet.DTOs.Vehicle
         public bool IsRegistered { get; set; }
         [Required]
         public VehicleContactDto Contact { get; set; }
-        public virtual ICollection<int> Features { get; set; }
+        public ICollection<int> Features { get; set; }
         public SaveVehicleDto()
         {
             Features = new Collection<int>();

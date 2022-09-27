@@ -45,8 +45,8 @@ namespace Comet.Controllers
                 return BadRequest(ModelState);
 
             var vehicle = mapper.Map<Vehicle>(vehicleDto);
-            await vehicleRepository.Add(vehicle);
-            var response = mapper.Map<SaveVehicleDto>(vehicle);
+            var result = await vehicleRepository.Add(vehicle);
+            var response = mapper.Map<VehicleDto>(result);
             return Ok(response);
         }
 
@@ -59,9 +59,8 @@ namespace Comet.Controllers
 
             var vehicle = await vehicleRepository.Get(id);
             mapper.Map(vehicleDto, vehicle);
-            await vehicleRepository.Update(vehicle);
-
-            var response = mapper.Map<SaveVehicleDto>(vehicle);
+            var result = await vehicleRepository.Update(vehicle);
+            var response = mapper.Map<VehicleDto>(result);
             return Ok(response);
         }
 
