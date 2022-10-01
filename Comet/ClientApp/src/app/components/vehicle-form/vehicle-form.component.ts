@@ -43,6 +43,11 @@ export class VehicleFormComponent implements OnInit {
 
   onSubmit() {
     this.vehicle.isRegistered = this.vehicle.isRegistered == "true" ? true : false;
-    this.vehicleService.create(this.vehicle).subscribe((data) => console.log(data));
+    this.vehicleService.create(this.vehicle)
+    .subscribe(
+      data => console.log(data),
+      err => {
+        
+      });
   }
 }
